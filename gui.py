@@ -229,12 +229,7 @@ def run_script():
       Select(driver.find_element(By.ID, 'onoType')).select_by_index(1) # 결제완료회원 선택
       py.sleep(1*TIME_MULTIPLIER)
       driver.find_element(By.ID, 'memberFind2').click() # 회원 목록 버튼 선택
-      py.sleep(1*TIME_MULTIPLIER)
-      
-      if stop_signal:
-        print("스크립트 중지됨")
-        driver.quit()
-        return
+      py.sleep(2*TIME_MULTIPLIER)
       
       if (i!=1):
         pages = driver.find_element(By.CLASS_NAME, 'page').find_elements(By.TAG_NAME, 'a')
@@ -252,13 +247,13 @@ def run_script():
         driver.quit()
         return
       
-      py.sleep(2*TIME_MULTIPLIER)
-      # driver.find_element(By.CLASS_NAME, 'btns_wrap').find_element(By.CLASS_NAME, 'btns_blue').click() # 저장 클릭
-      # py.sleep(1 *TIME_MULTIPLIER)
-      # py.press('enter') # alert 창 닫기
+      py.sleep(1*TIME_MULTIPLIER)
+      driver.find_element(By.CLASS_NAME, 'btns_wrap').find_element(By.CLASS_NAME, 'btns_blue').click() # 저장 클릭
+      py.sleep(1 *TIME_MULTIPLIER)
+      py.press('enter') # alert 창 닫기
 
 
-    py.sleep(10)
+    py.sleep(3)
 
     driver.quit()
 
