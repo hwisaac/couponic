@@ -1,0 +1,1 @@
+([('gui', '/Users/hwang-isaac/dcs/selenium/dist/gui', 'EXECUTABLE')],)

@@ -105,7 +105,7 @@ for i in range(PAGE_FROM, PAGE_TO + 1):
 
   ## 쿠폰 사용가능 강좌 선택
   lecture_for_coupon = Select(driver.find_element(By.NAME, 'productFk'))
-  lecture_for_coupon.select_by_index(3)
+  lecture_for_coupon.select_by_index(video_lectures.index(SELECTED_VIDEO_LECTURE))
 
   ## 쿠폰명
   coupon_name = '쿠폰명'
@@ -141,6 +141,6 @@ for i in range(PAGE_FROM, PAGE_TO + 1):
   # py.press('enter') # alert 창 닫기
 
 
-py.sleep(10)
+py.sleep(5)
 
 driver.quit()

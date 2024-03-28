@@ -68,7 +68,7 @@ app.title("GUI 애플리케이션")
 # 변수 설정
 time_multiplier_var = tk.IntVar(value=1)
 page_from_var = tk.IntVar(value=1)
-page_to_var = tk.IntVar(value=1)
+page_to_var = tk.IntVar(value=3)
 
 # TIME_MULTIPLIER 입력 필드
 time_multiplier_label = ttk.Label(app, text="TIME_MULTIPLIER")
@@ -110,7 +110,7 @@ lecture_dropdown.pack()
 
 # 결제기간 및 사용기간 입력 필드 추가
 payment_from_var = tk.StringVar(value='2023-12-01')
-payment_to_var = tk.StringVar(value='2023-01-31')
+payment_to_var = tk.StringVar(value='2024-01-31')
 service_from_var = tk.StringVar(value='2024-03-27')
 service_to_var = tk.StringVar(value='2024-04-30')
 
@@ -171,6 +171,10 @@ def run_script():
     login_btn.click()
 
     for i in range(PAGE_FROM, PAGE_TO + 1):
+      if stop_signal:
+        print("스크립트 중지됨")
+        driver.quit()
+        return
       py.sleep(1)
 
       ## 쿠폰관리 페이지 이동
@@ -193,7 +197,11 @@ def run_script():
       driver.find_element(By.ID, 'p_orderDay2').send_keys(payment_to)
 
       #################################################### 사용가능 기간 입력
-
+      if stop_signal:
+        print("스크립트 중지됨")
+        driver.quit()
+        return
+      
       driver.find_element(By.ID, 'p_startDay').click()
       py.press('backspace', presses=10)
       driver.find_element(By.ID, 'p_startDay').send_keys(service_from)
@@ -223,6 +231,10 @@ def run_script():
       driver.find_element(By.ID, 'memberFind2').click() # 회원 목록 버튼 선택
       py.sleep(1*TIME_MULTIPLIER)
       
+      if stop_signal:
+        print("스크립트 중지됨")
+        driver.quit()
+        return
       
       if (i!=1):
         pages = driver.find_element(By.CLASS_NAME, 'page').find_elements(By.TAG_NAME, 'a')
@@ -235,6 +247,11 @@ def run_script():
       btns[1].click() # 추가버튼 클릭
       btns[0].click() # 닫기버튼 클릭
 
+      if stop_signal:
+        print("스크립트 중지됨")
+        driver.quit()
+        return
+      
       py.sleep(2*TIME_MULTIPLIER)
       # driver.find_element(By.CLASS_NAME, 'btns_wrap').find_element(By.CLASS_NAME, 'btns_blue').click() # 저장 클릭
       # py.sleep(1 *TIME_MULTIPLIER)
