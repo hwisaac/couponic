@@ -79,7 +79,8 @@ for i in range(PAGE_FROM, PAGE_TO + 1):
   lecture.select_by_index(lectures.index(SELECTED_LECTURE))
 
   #################################################### 결제기간 입력
-  from_date
+  from_date = '2023-12-01'
+  to_date = '2024-01-31'
   
   driver.find_element(By.ID, 'p_orderDay1').click()
   py.press('backspace', presses=10)
@@ -135,9 +136,9 @@ for i in range(PAGE_FROM, PAGE_TO + 1):
   btns[0].click() # 닫기버튼 클릭
 
   py.sleep(2*TIME_MULTIPLIER)
-  # driver.find_element(By.CLASS_NAME, 'btns_wrap').find_element(By.CLASS_NAME, 'btns_blue').click() # 저장 클릭
-  # py.sleep(1 *TIME_MULTIPLIER)
-  # py.press('enter') # alert 창 닫기
+  driver.find_element(By.CLASS_NAME, 'btns_wrap').find_element(By.CLASS_NAME, 'btns_blue').click() # 저장 클릭
+  py.sleep(1 *TIME_MULTIPLIER)
+  py.press('enter') # alert 창 닫기
 
 
 py.sleep(10)
