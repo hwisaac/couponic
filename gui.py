@@ -63,10 +63,10 @@ def handle_lecture_selection(event):
 
 # 애플리케이션 초기화
 app = tk.Tk()
-app.title("GUI 애플리케이션")
+app.title("Couponic")
 
 # 변수 설정
-time_multiplier_var = tk.IntVar(value=1)
+time_multiplier_var = tk.DoubleVar(value=1)
 page_from_var = tk.IntVar(value=1)
 page_to_var = tk.IntVar(value=3)
 
