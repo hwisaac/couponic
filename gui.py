@@ -5,6 +5,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 import pyautogui as py
 import threading
+import datetime
+
 stop_signal = False
 
 
@@ -106,11 +108,19 @@ lecture_dropdown['values'] = lectures
 lecture_dropdown.bind("<<ComboboxSelected>>", handle_lecture_selection)
 lecture_dropdown.pack()
 
+# 오늘 날짜와 1개월 이후 날짜 계산
+today = datetime.date.today()
+one_month_later = today + datetime.timedelta(days=60)
+
+# 문자열 형식으로 변환
+today_str = today.strftime("%Y-%m-%d")
+one_month_later_str = one_month_later.strftime("%Y-%m-%d")
+
 # 결제기간 및 사용기간 입력 필드 추가
 payment_from_var = tk.StringVar(value='2023-12-01')
 payment_to_var = tk.StringVar(value='2024-01-31')
-service_from_var = tk.StringVar(value='2024-03-27')
-service_to_var = tk.StringVar(value='2024-04-30')
+service_from_var = tk.StringVar(value=today_str)  # 오늘 날짜로 변경
+service_to_var = tk.StringVar(value=one_month_later_str)  # 오늘 날짜로부터 1달
 
 payment_from_label = ttk.Label(app, text="결제기간 시작 (예: YYYY-MM-DD)")
 payment_from_label.pack()
@@ -214,7 +224,7 @@ def run_script():
         lecture_for_coupon.select_by_index(video_lectures.index(SELECTED_VIDEO_LECTURE))
 
         ## 쿠폰명
-        coupon_name = "쿠폰명"
+        coupon_name = SELECTED_VIDEO_LECTURE
         driver.find_element(By.NAME, "couponName").send_keys(coupon_name)
 
         ## 쿠폰금액
@@ -237,6 +247,7 @@ def run_script():
             pages[i - 2].click()  # 페이지 이동
             py.sleep(1 * TIME_MULTIPLIER)
 
+        py.sleep(1 * TIME_MULTIPLIER)
         driver.find_element(By.CLASS_NAME, "b_first_c").click()  # 전체목록 선택
         py.sleep(1 * TIME_MULTIPLIER)
         btns = driver.find_element(By.CSS_SELECTOR, "div.btn").find_elements(
