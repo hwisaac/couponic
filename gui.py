@@ -69,7 +69,7 @@ app.title("Couponic")
 # 변수 설정
 time_multiplier_var = tk.DoubleVar(value=1)
 page_from_var = tk.IntVar(value=1)
-page_to_var = tk.IntVar(value=3)
+page_to_var = tk.IntVar(value=1)
 
 # TIME_MULTIPLIER 입력 필드
 time_multiplier_label = ttk.Label(app, text="TIME_MULTIPLIER")
@@ -117,8 +117,8 @@ today_str = today.strftime("%Y-%m-%d")
 one_month_later_str = one_month_later.strftime("%Y-%m-%d")
 
 # 결제기간 및 사용기간 입력 필드 추가
-payment_from_var = tk.StringVar(value='2023-12-01')
-payment_to_var = tk.StringVar(value='2024-01-31')
+payment_from_var = tk.StringVar(value="2024-03-01")
+payment_to_var = tk.StringVar(value="2024-05-28")
 service_from_var = tk.StringVar(value=today_str)  # 오늘 날짜로 변경
 service_to_var = tk.StringVar(value=one_month_later_str)  # 오늘 날짜로부터 1달
 
