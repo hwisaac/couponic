@@ -6,6 +6,8 @@ from selenium.webdriver.support.select import Select
 import pyautogui as py
 import threading
 import datetime
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 stop_signal = False
 
@@ -165,6 +167,7 @@ def run_script():
     SELECTED_LECTURE = lecture_var.get()
 
     driver = webdriver.Chrome()
+    driver.maximize_window()
     driver.get("http://www.glbab.com/manage/") ## 사이트 접속
 
     py.sleep(1)
@@ -248,7 +251,13 @@ def run_script():
             py.sleep(1 * TIME_MULTIPLIER)
 
         py.sleep(1 * TIME_MULTIPLIER)
-        driver.find_element(By.CLASS_NAME, "b_first_c").click()  # 전체목록 선택
+
+        # WebDriverWait을 사용하여 요소가 존재할 때까지 기다리기
+        wait = WebDriverWait(driver, 10)
+        element = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "b_first_c")))
+        element.click()  # 전체목록 선택
+
+        # driver.find_element(By.CLASS_NAME, "b_first_c").click()  # 전체목록 선택
         py.sleep(1 * TIME_MULTIPLIER)
         btns = driver.find_element(By.CSS_SELECTOR, "div.btn").find_elements(
             By.TAG_NAME, "a"
