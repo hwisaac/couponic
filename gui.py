@@ -23,8 +23,9 @@ video_lectures = [None,
                       '번역가를 위한 외래어 표기법 (입문)',
                       'Subtitle Edit 강의 (심화)']
 
-lectures = [
+lectures = [  # 강의 선택
     None,
+    "한영 영상번역",
     "일어출판번역 - 입문",
     "일어출판번역 - 실전",
     "영어출판번역 - 입문",
